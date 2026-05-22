@@ -1,0 +1,34 @@
+[package]
+name = "smithy-transport-reqwest"
+version = "0.1.0"
+edition = "2024"
+authors = ["Jasper Hugo <jasper@jasperhugo.com>"]
+description = "Reqwest-backed HTTP transport for Smithy runtimes"
+license = "Apache-2.0 OR MIT"
+readme = "README.md"
+rust-version = "1.91.1"
+
+[dependencies]
+aws-smithy-runtime-api = { version = "1.7.0", default-features = false, features = ["client", "http-1x"] }
+aws-smithy-types = { version = "1.4.0", default-features = false, features = ["http-body-1-x"] }
+http = { version = "1.3.1", default-features = false }
+parking_lot = { version = "0.12", default-features = false }
+reqwest = { version = "0.13", default-features = false }
+
+[dev-dependencies]
+aws-smithy-runtime-api = { version = "1.7.0", default-features = false, features = ["test-util"] }
+http-body-util = { version = "0.1.3", default-features = false }
+tokio = { version = "1.28.1", default-features = false, features = ["io-util", "macros", "net", "rt-multi-thread"] }
+
+[features]
+default = []
+rustls = ["reqwest/rustls"]
+rustls-no-provider = ["reqwest/rustls-no-provider"]
+default-tls = ["reqwest/default-tls"]
+native-tls = ["reqwest/native-tls"]
+native-tls-no-alpn = ["reqwest/native-tls-no-alpn"]
+native-tls-vendored = ["reqwest/native-tls-vendored"]
+native-tls-vendored-no-alpn = ["reqwest/native-tls-vendored-no-alpn"]
+http2 = ["reqwest/http2"]
+http3 = ["reqwest/http3"]
+system-proxy = ["reqwest/system-proxy"]
